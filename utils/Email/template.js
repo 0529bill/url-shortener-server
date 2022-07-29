@@ -38,7 +38,7 @@ const template = compile(`<mjml>
     <mj-column width="100%">
       <mj-image src="http://nimus.de/share/tpl-card/lineshadow.png" alt="link" align="center" border="none" padding="0px"></mj-image>
       <mj-button align="center"
-        background-color="#1890ff" color="#FFFFFF" border-radius="2px" href="{{link}}" inner-padding="15px 30px" padding-bottom="50px" padding-top="40">Submit action</mj-button>
+        background-color="#1890ff" color="#FFFFFF" border-radius="2px" href="{{link}}" inner-padding="15px 30px" padding-bottom="50px" padding-top="40">Submit</mj-button>
           <mj-text color="#999" font-size="16px" >Note: This is a computer-generated message. Please do not reply to this email.</mj-text>
     </mj-column>
   </mj-section>

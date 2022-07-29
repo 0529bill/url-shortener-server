@@ -1,15 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import mongoose from "mongoose";
 import uid from "#utils/shortUniqueId.js";
-=======
-import mongoose from 'mongoose';
-import uid from '#utils/shortUniqueId.js';
->>>>>>> feat: add new controller
-=======
-import mongoose from "mongoose";
-import uid from "#utils/shortUniqueId.js";
->>>>>>> feat: email
 
 const shortUrlSchema = new mongoose.Schema({
   fullUrl: {

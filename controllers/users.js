@@ -101,29 +101,27 @@ export const getUrlByUsername = async (req, res) => {
 };
 
 export const forgetPassword = async (req, res) => {
-  console.log("req.body.userInfo", req.body);
   try {
-    console.log("req.body.userInfo", req.body.userInfo);
     const { email, origin } = req.body;
     const validateUsername = await UserInfo.findOne({
       email,
     });
-    console.log("validateUsername", validateUsername);
     if (!validateUsername) {
       return res.status(404).json({ message: "can't find related userInfo!" });
     }
 
     Email(email, validateUsername.username, origin);
-  } catch (error) {}
+    return res.status(200).json({ message: "success!" });
+  } catch (error) {
+    console.log("forgetPassword_error", error);
+  }
 };
 
 export const resetPassword = async (req, res) => {
   try {
-    console.log("req.body.userInfo", req.body.userInfo);
     const { password, newPassword, pathParams } = req.body.userInfo;
 
     const decoded = base64.decode(pathParams);
-    console.log("decoded", decoded);
     const validateUsername = await UserInfo.findOne({
       username: decoded,
     });
@@ -133,7 +131,6 @@ export const resetPassword = async (req, res) => {
         .append("rtn", "1040")
         .json({ message: "incorrect password" });
     }
-    console.log("validateUsername", validateUsername);
     const isPasswordCorrect = await bcrypt.compare(
       password,
       validateUsername.password
@@ -141,7 +138,6 @@ export const resetPassword = async (req, res) => {
 
     if (isPasswordCorrect) {
       const hashedPassword = await bcrypt.hash(newPassword, 12);
-      console.log("hashedPassword", hashedPassword);
       validateUsername.password = hashedPassword;
       await validateUsername.save();
       return res
