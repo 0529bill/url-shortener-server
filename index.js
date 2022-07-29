@@ -7,8 +7,9 @@ import mongoose from "mongoose";
 import urlRequest from "./routes/urlRequest.js";
 import users from "./routes/users.js";
 const app = express();
-
-const CURRENT_PORT = ENV.PORT || 4050;
+console.log("ENV.PORT ", ENV.PORT);
+// const CURRENT_PORT = ENV.PORT || 4050;
+app.set("port", ENV.PORT || 4050);
 
 //bodyParser: parse bodies from http request
 //bodyParser.json: only parse json
@@ -27,8 +28,9 @@ app.use("/users", users);
 app.get("/", (req, res) => res.send("APP IS RUNNING!"));
 
 dbConnection.once("open", () =>
-  app.listen(CURRENT_PORT, () =>
-    console.log(`Server running on ports: ${CURRENT_PORT}`)
+  app.listen(app.get("port"), () =>
+    // console.log(`Server running on ports: ${CURRENT_PORT}`)
+    console.log("hi")
   )
 );
 dbConnection.on("error", (error) => console.log("Error", error));
