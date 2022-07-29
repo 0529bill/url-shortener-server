@@ -88,6 +88,7 @@ export const userSignIn = async (req, res) => {
 
 export const getUrlByUsername = async (req, res) => {
   try {
+    console.log("req", req);
     const targetUser = req.body.userInfo;
     const validateDbUrl = await ShortUrl.find({ username: targetUser });
     if (!validateDbUrl) {
