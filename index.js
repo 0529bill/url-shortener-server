@@ -9,6 +9,7 @@ import users from "./routes/users.js";
 const app = express();
 console.log("ENV.PORT ", ENV.PORT);
 // const CURRENT_PORT = ENV.PORT || 4050;
+const PORT = 4050;
 app.set("port", ENV.PORT || 4050);
 
 //bodyParser: parse bodies from http request
