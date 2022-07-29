@@ -17,6 +17,7 @@ app.use(bodyParser.json({ limit: "30mb" }));
 //bodyParser.urlencoded: middleware for parsing bodies from URL.
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors({ exposedHeaders: "rtn" }));
+app.options("*", cors());
 
 ///express: app.use() use middleware
 //express: add router to backend
