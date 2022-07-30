@@ -8,9 +8,8 @@ import urlRequest from "./routes/urlRequest.js";
 import users from "./routes/users.js";
 const app = express();
 console.log("ENV.PORT ", ENV.PORT);
-// const CURRENT_PORT = ENV.PORT || 4050;
 const PORT = 4050;
-app.set("port", ENV.PORT || 4050);
+const CURRENT_PORT = process.env.PORT || PORT;
 
 //bodyParser: parse bodies from http request
 //bodyParser.json: only parse json
@@ -29,9 +28,8 @@ app.use("/users", users);
 app.get("/", (req, res) => res.send("APP IS RUNNING!"));
 
 dbConnection.once("open", () =>
-  app.listen(app.get("port"), () =>
-    // console.log(`Server running on ports: ${CURRENT_PORT}`)
-    console.log("hi")
+  app.listen(CURRENT_PORT, () =>
+    console.log(`Server running on ports: ${CURRENT_PORT}`)
   )
 );
 dbConnection.on("error", (error) => console.log("Error", error));
